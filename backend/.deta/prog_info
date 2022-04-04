@@ -1,0 +1,1 @@
+{"id":"c479c641-6556-42bc-bbb1-4bf4949d4b1a","space":15027,"runtime":"python3.9","name":"backend","path":"gdsbyk","project":"a06pe0ih","account":"144798365827","region":"eu-central-1","deps":["fastapi","uvicorn[standard]","web3"],"envs":null,"public":true,"log_level":"debug","cron":""}
