@@ -7,7 +7,7 @@ import SupplyChain from "./artifacts/contracts/SupplyChain.sol/Supplychain.json"
 
 function App() {
 
-  const ContractAddress = "0xFa56954976bA7d616945c09A7e360499e7038d98";
+  const ContractAddress = "0x827B90aA5e49d93025953E21e7a7227a091De69e" //"0xFa56954976bA7d616945c09A7e360499e7038d98";
  
   async function requestAccount() {
     await window.ethereum.request({ method: "eth_requestAccounts" });
