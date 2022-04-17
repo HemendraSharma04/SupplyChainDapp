@@ -15,6 +15,12 @@ class Status(BaseModel):
     wid :int
     pid :int
     flag :bool
+    
+class Data(BaseModel):
+    temp:int
+    humidity:int
+    heatindex:int
+    pid:int
 
 router = APIRouter(
     prefix='/product',
@@ -39,3 +45,13 @@ def index(product: Product):
 @router.post('/status')
 def index(status:Status):
     return AddStatus(status.location, status.data,status.wid,status.pid,status.flag)
+
+
+@router.post('/data')
+def index(data: Data):
+    return AddData(data.temp,data.humidity,data.heatindex, data.pid)
+
+
+@router.get("/data/{id}")
+def index(id: int):
+    return getProductData(id)

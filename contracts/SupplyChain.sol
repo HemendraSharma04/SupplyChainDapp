@@ -30,14 +30,23 @@ struct Status{
     string heatindex;
     uint256 w_id;
     uint256 p_id;
+    uint256 total_quantity;
+    uint256 weight;
+    uint256 waste_product;
     bool flag;
-
 }
 
 struct Worker{
     string name;
     uint256 id;
     uint256 timestamp;
+}
+
+struct Data {
+    uint256 temp;
+    uint256 humidity;
+    uint256 hindex;
+    uint256 pid;
 }
 
 modifier onlyOwner {
@@ -51,13 +60,18 @@ Status[] public productStatus;
 Status private statusInfo;
 Worker[] public workers_list;
 Worker private workerInfo;
+Data[] public Data_list;
+Data private DataInfo;
+
 
 mapping(uint256 => Status[]) public product_Status;
 mapping (uint256 => Product) public products;
 mapping (uint256 => Worker) public workers;
+mapping (uint256 => Data[]) public data;
 
 
-function setWorker(string memory name) public  payable{
+function setWorker(string memory name) public  payable
+{
     workerInfo=Worker(name,worker_id,block.timestamp);
     workers[worker_id]=workerInfo;
     workers_list.push(workerInfo);
@@ -85,19 +99,26 @@ function AddStatus( string memory location,
     string  memory heatindex,
     uint256 wid,
     uint256 pid,
+    uint256 total_quantity,
+    uint256 weight,
+    uint256 waste_product,
     bool flag
 ) public payable {
 
-    statusInfo= Status(location,block.timestamp,temp,humidity,heatindex,wid,pid,flag);
+    statusInfo= Status(location,block.timestamp,temp,humidity,heatindex,wid,pid,total_quantity,weight,waste_product,flag);
     product_Status[pid].push(statusInfo);
     productStatus.push(statusInfo);
 }
 
-function getProductsList() public view returns(Product[] memory)
-{
-    return products_list;
-}
 
+function AddData( uint256 temp,
+    uint256 humidity,
+    uint256 hindex,uint256 pid) public payable {
+
+        DataInfo = Data(temp,humidity,hindex,pid);
+        data[pid].push(DataInfo);
+        Data_list.push(DataInfo);
+        }
 function getWorkerssList() public view returns(Worker[] memory)
 {
     return workers_list;
@@ -106,6 +127,11 @@ function getWorkerssList() public view returns(Worker[] memory)
 function getProductStatus(uint256 id) public view returns(Status[] memory){
 
     return product_Status[id];
+}
+
+function getProductData(uint256 id) public view returns(Data[] memory){
+
+    return data[id];
 }
 
 

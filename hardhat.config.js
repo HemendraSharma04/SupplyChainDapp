@@ -1,5 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
-
+//require('dotenv').config({ path: __dirname + '/.env' });
+require("dotenv").config()
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
@@ -17,8 +18,8 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 
-const ALCHEMY_API_KEY = "yrmlm2oNZwtWequlaQrrAukKCRH6S40a";
-const RINKEBY_PRIVATE_KEY = "4df97a2c7c2f353c30be92945884987299c983a051ca3a4a9d0a2cb6e8e3d175";
+const ALCHEMY_API_KEY = process.env.ALCHEMY_KEY;
+const RINKEBY_PRIVATE_KEY =process.env.RINKEBY_KEY;
 
 
 module.exports = {
