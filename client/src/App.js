@@ -62,7 +62,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/workers" element={<DisplayWorkers />} />
           <Route path="/nav" element={<Navbar />} />
-          <Route path="products" element={<DisplayProducts />} />
+          <Route path="/products" element={<DisplayProducts />} />
         </Routes>
       </BrowserRouter>
     </div>
