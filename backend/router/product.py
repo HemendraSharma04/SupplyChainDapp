@@ -11,9 +11,14 @@ class Product(BaseModel):
     
 class Status(BaseModel):
     location :str
-    data :str
+    temp: int
+    humidity:int
+    heatindex:int
     wid :int
     pid :int
+    total_quantity:int
+    weight:int
+    waste_product:int
     flag :bool
     
 class Data(BaseModel):
@@ -44,7 +49,7 @@ def index(product: Product):
 
 @router.post('/status')
 def index(status:Status):
-    return AddStatus(status.location, status.data,status.wid,status.pid,status.flag)
+    return AddStatus(status.location, status.temp,status.humidity,status.heatindex,status.wid,status.pid,status.total_quantity,status.weight,status.waste_product,status.flag)
 
 
 @router.post('/data')
