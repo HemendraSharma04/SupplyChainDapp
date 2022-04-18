@@ -1,10 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter, Routes, Route, Switch } from "react-router-dom";
 import { useState } from "react";
 import { ethers } from "ethers";
 import SupplyChain from "./artifacts/contracts/SupplyChain.sol/Supplychain.json";
 import DisplayWorkers from './components/DisplayWorkers.js';
+import Home from "./components/Home.js";
+import Navbar from "./components/Navbar.js";
+import DisplayProducts from "./components/DisplayProducts.js";
+
 
 function App() {
   const [data, setData] = useState();
@@ -38,14 +42,29 @@ function App() {
     }
   }
 
+ 
 
 
   return (
-    <div className="App">
+    // <div className="App">
 
-      <button onClick={getWorker}> GETWORKERS </button>
-      <DisplayWorkers workersList={data} />
+    //   <button onClick={getWorker}> GETWORKERS </button>
+    //   <DisplayWorkers workersList={data} />
+    
+    // </div>
 
+    <div className="app">
+      <Navbar/>
+      <BrowserRouter>
+        {/* <Navbar /> */}
+        
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/workers" element={<DisplayWorkers />} />
+          <Route path="/nav" element={<Navbar />} />
+          <Route path="products" element={<DisplayProducts />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
