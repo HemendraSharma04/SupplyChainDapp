@@ -31,9 +31,9 @@ router = APIRouter(
 
 @router.get('/')
 def index():
-    return getProductsList()
+    return getProducts()
 
-@router.get("/{id}")
+@router.get("/status/{id}")
 def index(id:int):
     return getProductStatus(id)
     

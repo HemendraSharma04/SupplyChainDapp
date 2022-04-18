@@ -134,5 +134,10 @@ function getProductData(uint256 id) public view returns(Data[] memory){
     return data[id];
 }
 
+function getProducts() public view returns(Product[] memory){
+
+    return products_list ;
+}
+
 
 }

@@ -18,8 +18,8 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 
-const ALCHEMY_API_KEY = process.env.ALCHEMY_KEY;
-const RINKEBY_PRIVATE_KEY =process.env.RINKEBY_KEY;
+const ALCHEMY_API_KEY = process.env.ALCHEMY_KEY1;
+const PRIVATE_KEY =process.env.PRIVATE_KEY;
 
 
 module.exports = {
@@ -28,9 +28,9 @@ module.exports = {
     artifacts: "./client/src/artifacts",
   },
   networks: {
-    rinkeby: {
+    ropsten: {
       url: `https://eth-ropsten.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
-      accounts: [`${RINKEBY_PRIVATE_KEY}`]
+      accounts: [`${PRIVATE_KEY}`]
     },
   }
 }

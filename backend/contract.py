@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 w3 = Web3(Web3.HTTPProvider(
-    "https://eth-rinkeby.alchemyapi.io/v2/yrmlm2oNZwtWequlaQrrAukKCRH6S40a"))
+    "https://eth-ropsten.alchemyapi.io/v2/-4TAg-d6XKuHICQaF7yZfF2BfQ3BpR5t"))
 w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
 
@@ -256,6 +256,56 @@ abi = json.loads("""[
 					}
 				],
 				"internalType": "struct Supplychain.Data[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getProducts",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "price",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "reqtemp",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "manufacturing",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Supplychain.Product[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -677,7 +727,7 @@ account = w3.toChecksumAddress(
     '0x56B53253417F422A608b379182c97EdEb6bF2cfF')  # account
 
 address = w3.toChecksumAddress(
-    '0xcb90722d25EaF3565245C525fBD038f79029b6A4')  # contrat address
+    '0xFa56954976bA7d616945c09A7e360499e7038d98')  # contrat address
 deployed_contract = w3.eth.contract(address=address, abi=abi)
 
 print(deployed_contract.functions.getWorkerssList().call())
@@ -733,6 +783,10 @@ def getProductStatus(pid):
 
 def getProductData(pid):
     return deployed_contract.functions.getProductData(pid).call()
+
+def getProducts():
+    return deployed_contract.functions.getProducts().call()
+    
 
 
     
