@@ -86,7 +86,7 @@ const DisplayProducts = () => {
                         <StyledTableCell align="left">Product&nbsp;Name</StyledTableCell>
                         <StyledTableCell align="right">Product&nbsp;ID</StyledTableCell>
                         <StyledTableCell>Quantity</StyledTableCell>
-                        <StyledTableCell>Weight&nbsp;in&nbsp;Kg</StyledTableCell>
+                        <StyledTableCell>Required&nbsp;Temp.</StyledTableCell>
                         <StyledTableCell align="right">Manufacturing&nbsp;Date</StyledTableCell>
 
                     </StyledTableRow>
