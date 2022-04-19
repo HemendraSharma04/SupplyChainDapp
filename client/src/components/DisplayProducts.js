@@ -84,8 +84,9 @@ const DisplayProducts = () => {
                     <StyledTableRow>
                         <StyledTableCell>Sr. No.</StyledTableCell>
                         <StyledTableCell align="left">Product&nbsp;Name</StyledTableCell>
-                        <StyledTableCell align="right">Product&nbsp;ID</StyledTableCell>
-                        <StyledTableCell>Quantity</StyledTableCell>
+                        <StyledTableCell>Product ID</StyledTableCell>
+                        <StyledTableCell sx={{width: "40%"}}>Description</StyledTableCell>
+                        <StyledTableCell>Price&nbsp;</StyledTableCell>
                         <StyledTableCell>Required&nbsp;Temp.</StyledTableCell>
                         <StyledTableCell align="right">Manufacturing&nbsp;Date</StyledTableCell>
 
@@ -99,9 +100,10 @@ const DisplayProducts = () => {
                         >
                             <StyledTableCell component="th" scope="row">{iterator + 1}</StyledTableCell>
                             <StyledTableCell align="left">{row[1]}</StyledTableCell>
-                            <StyledTableCell align="right">{parseInt(row[0]._hex)}</StyledTableCell>
-                            <StyledTableCell>{row[2]}</StyledTableCell>
-                            <StyledTableCell>{row[4]}</StyledTableCell>
+                            <StyledTableCell>{parseInt(row.id._hex)}</StyledTableCell>
+                            <StyledTableCell>{row.description}</StyledTableCell>
+                            <StyledTableCell>{row.price}</StyledTableCell>
+                            <StyledTableCell>{row.reqtemp}</StyledTableCell>
                             <StyledTableCell align="right">{row[5]}</StyledTableCell>
 
                         </StyledTableRow>
