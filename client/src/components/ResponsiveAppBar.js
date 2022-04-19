@@ -16,7 +16,7 @@ import { color } from '@mui/system';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
-import { purple } from '@mui/material/colors';
+import { deepPurple } from '@mui/material/colors';
 
 const pages = ['Home', 'Products', 'Workers', 'Status', 'Data'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -34,7 +34,7 @@ const theme = createTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
-      main: purple[500],
+      main: '#673ab7',
     },
     secondary: {
       // This is green.A700 as hex.

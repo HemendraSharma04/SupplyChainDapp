@@ -96,7 +96,7 @@ const DisplayWorkers = () => {
                         >
                             <StyledTableCell component="th" scope="row">{iterator + 1}</StyledTableCell>
                             <StyledTableCell align="left">{row[0]}</StyledTableCell>
-                            <StyledTableCell align="right">{row[1]._hex}</StyledTableCell>
+                            <StyledTableCell align="right">{parseInt(row[1]._hex)}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

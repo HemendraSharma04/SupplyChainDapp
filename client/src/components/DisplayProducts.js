@@ -72,7 +72,7 @@ const DisplayProducts = () => {
         return (
             <div style={{textAlign: "center", padding: "10%"}}>
             <Box sx={{ color: 'grey.500' }}>
-                <CircularProgress />
+                <CircularProgress color="inherit"/>
             </Box>
             </div>
         );
@@ -99,7 +99,7 @@ const DisplayProducts = () => {
                         >
                             <StyledTableCell component="th" scope="row">{iterator + 1}</StyledTableCell>
                             <StyledTableCell align="left">{row[1]}</StyledTableCell>
-                            <StyledTableCell align="right">{row[0]._hex}</StyledTableCell>
+                            <StyledTableCell align="right">{parseInt(row[0]._hex)}</StyledTableCell>
                             <StyledTableCell>{row[2]}</StyledTableCell>
                             <StyledTableCell>{row[4]}</StyledTableCell>
                             <StyledTableCell align="right">{row[5]}</StyledTableCell>

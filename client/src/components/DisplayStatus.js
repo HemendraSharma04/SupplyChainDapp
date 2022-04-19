@@ -23,6 +23,8 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import Typography from '@mui/material/Typography';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
+import StatusModal from './StatusModal.js';
+
 const DisplayStatus = () => {
     const ContractAddress = "0xFa56954976bA7d616945c09A7e360499e7038d98" //"0xFa56954976bA7d616945c09A7e360499e7038d98";
     const [id, setId] = useState(0);
@@ -33,6 +35,7 @@ const DisplayStatus = () => {
     }
     console.log(id);
     async function getStatus() {
+        
         if (typeof window.ethereum !== "undefined") {
             requestAccount();
             const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -47,9 +50,9 @@ const DisplayStatus = () => {
             try {
 
                 const Sdata = await contract.getProductStatus(id);
+                
                 console.log("data: ", Sdata);
                 setData(Sdata);
-
                 //console.log(contract);
 
             } catch (err) {
@@ -90,26 +93,30 @@ const DisplayStatus = () => {
         <div style={{color: "white"}}>
             {!data ? (
                 <Box sx={{ color: 'grey.500' }}>
-                    <CircularProgress />
+                    <CircularProgress color="inherit"/>
                 </Box>
             ) : (
                 <div>
                     <h1>Product Status</h1>
+
                 <Timeline position="left">
                 {data.map((row, iterator) => (
                     <TimelineItem key={iterator}>
-                        <TimelineOppositeContent>
+                        <TimelineOppositeContent sx={{ py: '10px', px: 2}}>
                             {convertTimestamp(row.timestamp._hex)}
                         </TimelineOppositeContent>
                         <TimelineSeparator>
-                            <TimelineDot color="secondary"/>
+                            <StatusModal statusData={row}/>
                             <TimelineConnector />
                         </TimelineSeparator>
-                        <TimelineContent sx={{ py: '12px', px: 2 }}>
+                        <TimelineContent sx={{ py: '10px', px: 2 }}>
                         <Typography variant="h6" component="span">
                             {row[0]}
                         </Typography>
-                        <Typography>Temperature recorded: {row[2]}°C</Typography>
+                        {parseInt(row[2], 10)<25? 
+                            <Typography sx={{color: "lightgreen"}}>Temperature recorded: {row[2]}°C</Typography> 
+                        : 
+                            <Typography sx={{color: "orange"}}>Temperature recorded: {row[2]}°C</Typography>}
                         </TimelineContent>
                         
                     </TimelineItem> 
