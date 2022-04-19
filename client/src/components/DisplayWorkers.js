@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -12,6 +12,28 @@ import { BrowserRouter, Routes, Route, Switch } from "react-router-dom";
 import { useState } from "react";
 import { ethers } from "ethers";
 import SupplyChain from "../artifacts/contracts/SupplyChain.sol/Supplychain.json";
+import { styled } from '@mui/material/styles';
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
+
 
 const DisplayWorkers = () => {
     const [workersList, setData] = useState();
@@ -60,22 +82,22 @@ const DisplayWorkers = () => {
         <TableContainer component={Paper} sx={{width: "80%", margin:"auto", marginTop: "5%"}}>
             <Table sx={{ minWidth: 650}} aria-label="simple table">
                 <TableHead>
-                    <TableRow>
-                        <TableCell>Sr. No.</TableCell>
-                        <TableCell align="left">Name</TableCell>
-                        <TableCell align="right">Worker&nbsp;ID</TableCell>
-                    </TableRow>
+                    <StyledTableRow>
+                        <StyledTableCell>Sr. No.</StyledTableCell>
+                        <StyledTableCell align="left">Name</StyledTableCell>
+                        <StyledTableCell align="right">Worker&nbsp;ID</StyledTableCell>
+                    </StyledTableRow>
                 </TableHead>
                 <TableBody>
                     {workersList.map((row, iterator) => (
-                        <TableRow
+                        <StyledTableRow
                             key={iterator}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell component="th" scope="row">{iterator + 1}</TableCell>
-                            <TableCell align="left">{row[0]}</TableCell>
-                            <TableCell align="right">{row[1]._hex}</TableCell>
-                        </TableRow>
+                            <StyledTableCell component="th" scope="row">{iterator + 1}</StyledTableCell>
+                            <StyledTableCell align="left">{row[0]}</StyledTableCell>
+                            <StyledTableCell align="right">{row[1]._hex}</StyledTableCell>
+                        </StyledTableRow>
                     ))}
                 </TableBody>
             </Table>

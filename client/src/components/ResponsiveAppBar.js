@@ -14,9 +14,35 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { color } from '@mui/system';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import WhatshotIcon from '@mui/icons-material/Whatshot';
+import { purple } from '@mui/material/colors';
 
 const pages = ['Home', 'Products', 'Workers', 'Status', 'Data'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#32a5cf',
+    },
+  },
+});
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: purple[500],
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#11cb5f',
+    },
+  },
+});
+
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,7 +64,9 @@ const ResponsiveAppBar = () => {
   };
 
   return (
+    <ThemeProvider theme={theme}>
     <AppBar position="static">
+      
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -111,7 +139,8 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <AccountCircle />
+                {/* <AccountCircle /> */}
+                 < WhatshotIcon  color="danger"/>
                 {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
               </IconButton>
             </Tooltip>
@@ -141,6 +170,7 @@ const ResponsiveAppBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider >
   );
 };
 export default ResponsiveAppBar;
