@@ -1,10 +1,7 @@
 .landing-wrapper {
     /* display: table; */
     /* width: 100%; */
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://r10.ieee.org/bombay-cs/wp-content/uploads/sites/99/supply-chain-network-applications-multi-party-networks-5.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
+    
     height: 100%;
     color: white;
     padding: 0%;

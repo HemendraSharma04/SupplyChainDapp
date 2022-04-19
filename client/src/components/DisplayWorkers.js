@@ -41,7 +41,7 @@ const DisplayWorkers = () => {
     
         const ContractAddress = "0xFa56954976bA7d616945c09A7e360499e7038d98"
         if (typeof window.ethereum !== "undefined") {
-            requestAccount();
+            await requestAccount();
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
             console.log(await signer.getAddress())
@@ -72,8 +72,8 @@ const DisplayWorkers = () => {
         getWorker();
         return (
             <div style={{textAlign: "center", padding: "10%"}}>
-            <Box>
-                <CircularProgress />
+            <Box sx={{ color: 'grey.500' }}>
+                <CircularProgress color="inherit" />
             </Box>
             </div>
         );
