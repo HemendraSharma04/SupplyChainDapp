@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -12,6 +12,27 @@ import { BrowserRouter, Routes, Route, Switch } from "react-router-dom";
 import { useState } from "react";
 import { ethers } from "ethers";
 import SupplyChain from "../artifacts/contracts/SupplyChain.sol/Supplychain.json";
+import { styled } from '@mui/material/styles';
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
 
 const DisplayProducts = () => {
     const [ProductsList, setData] = useState();
@@ -50,7 +71,7 @@ const DisplayProducts = () => {
         getProduct();
         return (
             <div style={{textAlign: "center", padding: "10%"}}>
-            <Box>
+            <Box sx={{ color: 'grey.500' }}>
                 <CircularProgress />
             </Box>
             </div>
@@ -60,30 +81,30 @@ const DisplayProducts = () => {
         <TableContainer component={Paper} sx={{width: "80%", margin:"auto", marginTop: "5%"}}>
             <Table sx={{ minWidth: 650}} aria-label="simple table">
                 <TableHead>
-                    <TableRow>
-                        <TableCell>Sr. No.</TableCell>
-                        <TableCell align="left">Product&nbsp;Name</TableCell>
-                        <TableCell align="right">Product&nbsp;ID</TableCell>
-                        <TableCell>Quantity</TableCell>
-                        <TableCell>Weight&nbsp;in&nbsp;Kg</TableCell>
-                        <TableCell align="right">Manufacturing&nbsp;Date</TableCell>
+                    <StyledTableRow>
+                        <StyledTableCell>Sr. No.</StyledTableCell>
+                        <StyledTableCell align="left">Product&nbsp;Name</StyledTableCell>
+                        <StyledTableCell align="right">Product&nbsp;ID</StyledTableCell>
+                        <StyledTableCell>Quantity</StyledTableCell>
+                        <StyledTableCell>Weight&nbsp;in&nbsp;Kg</StyledTableCell>
+                        <StyledTableCell align="right">Manufacturing&nbsp;Date</StyledTableCell>
 
-                    </TableRow>
+                    </StyledTableRow>
                 </TableHead>
                 <TableBody>
                     {ProductsList.map((row, iterator) => (
-                        <TableRow
+                        <StyledTableRow
                             key={iterator}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell component="th" scope="row">{iterator + 1}</TableCell>
-                            <TableCell align="left">{row[1]}</TableCell>
-                            <TableCell align="right">{row[0]._hex}</TableCell>
-                            <TableCell>{row[2]}</TableCell>
-                            <TableCell>{row[4]}</TableCell>
-                            <TableCell align="right">{row[5]}</TableCell>
+                            <StyledTableCell component="th" scope="row">{iterator + 1}</StyledTableCell>
+                            <StyledTableCell align="left">{row[1]}</StyledTableCell>
+                            <StyledTableCell align="right">{row[0]._hex}</StyledTableCell>
+                            <StyledTableCell>{row[2]}</StyledTableCell>
+                            <StyledTableCell>{row[4]}</StyledTableCell>
+                            <StyledTableCell align="right">{row[5]}</StyledTableCell>
 
-                        </TableRow>
+                        </StyledTableRow>
                     ))}
                 </TableBody>
             </Table>
