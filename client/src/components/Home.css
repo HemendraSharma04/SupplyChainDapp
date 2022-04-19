@@ -1,0 +1,37 @@
+.landing-wrapper {
+    /* display: table; */
+    /* width: 100%; */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://r10.ieee.org/bombay-cs/wp-content/uploads/sites/99/supply-chain-network-applications-multi-party-networks-5.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    height: 100%;
+    color: white;
+    padding: 0%;
+    /* border: 10px solid black */
+  }
+
+#heading {
+    text-align: center;
+    font-size: xx-large;
+    height: max-content;
+    padding: 6%;
+    font-weight: bold;
+    /* margin-top: 2px; */
+    /* border: 10px solid; */
+}
+/*
+
+.body {
+
+    background-color: red;
+    background-image:
+      linear-gradient(
+        to right, 
+        red, 
+        #f06d06, 
+        rgb(255, 255, 0), 
+        green
+      );
+}
+*/
