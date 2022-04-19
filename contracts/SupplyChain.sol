@@ -1,3 +1,7 @@
+/**
+ *Submitted for verification at Etherscan.io on 2022-04-19
+*/
+
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity >= 0.8.0;
 
@@ -31,8 +35,6 @@ struct Status{
     uint256 w_id;
     uint256 p_id;
     uint256 total_quantity;
-    uint256 weight;
-    uint256 waste_product;
     bool flag;
 }
 
@@ -101,12 +103,10 @@ function AddStatus( string memory location,
     uint256 wid,
     uint256 pid,
     uint256 total_quantity,
-    uint256 weight,
-    uint256 waste_product,
     bool flag
 ) public payable {
 
-    statusInfo= Status(location,block.timestamp,temp,humidity,heatindex,wid,pid,total_quantity,weight,waste_product,flag);
+    statusInfo= Status(location,block.timestamp,temp,humidity,heatindex,wid,pid,total_quantity,flag);
     product_Status[pid].push(statusInfo);
     productStatus.push(statusInfo);
 }

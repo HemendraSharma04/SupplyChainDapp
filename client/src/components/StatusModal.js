@@ -54,7 +54,7 @@ export default function StatusModal({statusData}) {
             Heat Index: {statusData.heatindex}°C<br/>
             Product Id: {parseInt(statusData.p_id._hex)}<br/>
             Total Quantity: {parseInt(statusData.total_quantity._hex)} Units<br/>
-            Weight of Shipment: {parseInt(statusData.weight._hex)} Kg<br/>
+            
             </Typography>
             </Box>
         ) : (
