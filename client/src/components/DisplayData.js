@@ -45,7 +45,7 @@ const DisplayData = () => {
             <TextField id="standard-basic" label="Enter PID" variant="standard" onChange={(e) => setId(e.target.value)} />
             {/* <div><button onClick={getData}>Data</button></div> */}
             <div>
-            <Button variant="contained" endIcon={<Fingerprint />} onClick={getData} >
+            <Button variant="contained" endIcon={<SendIcon />} onClick={getData} >
                 Send
             </Button>
             </div>
