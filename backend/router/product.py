@@ -4,10 +4,13 @@ from pydantic import BaseModel
 
 
 class Product(BaseModel):
-    name: str
-    price: str
-    description: str
-    data: str
+   
+    name:str
+    price : str
+    description :str
+    reqtemp :str
+    manufacturing :str
+    timestamp :int
     
 class Status(BaseModel):
     location :str
@@ -17,8 +20,6 @@ class Status(BaseModel):
     wid :int
     pid :int
     total_quantity:int
-    weight:int
-    waste_product:int
     flag :bool
     
 class Data(BaseModel):
@@ -45,11 +46,11 @@ def index(id:int):
 
 @router.post('/')
 def index(product: Product):
-    return AddProduct(product.name, product.price, product.description, product.data)
+    return AddProduct(product.name, product.price,  product.description,product.reqtemp,product.manufacturing,product.timestamp)
 
 @router.post('/status')
 def index(status:Status):
-    return AddStatus(status.location, status.temp,status.humidity,status.heatindex,status.wid,status.pid,status.total_quantity,status.weight,status.waste_product,status.flag)
+    return AddStatus(status.location, status.temp,status.humidity,status.heatindex,status.wid,status.pid,status.total_quantity,status.flag)
 
 
 @router.post('/data')

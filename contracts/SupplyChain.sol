@@ -89,6 +89,7 @@ function AddProduct(
     productInfo=Product(product_id,name,price,description,reqtemp,manufacturing,block.timestamp);
     products[product_id]=(productInfo);
     products_list.push(productInfo);
+    product_id++;
 
 }
 

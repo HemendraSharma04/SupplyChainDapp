@@ -13,6 +13,11 @@ w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
 abi = json.loads("""[
 	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -111,16 +116,6 @@ abi = json.loads("""[
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "weight",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "waste_product",
-				"type": "uint256"
-			},
-			{
 				"internalType": "bool",
 				"name": "flag",
 				"type": "bool"
@@ -134,35 +129,12 @@ abi = json.loads("""[
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			}
-		],
-		"name": "setWorker",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "data",
+		"name": "Data_list",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -194,9 +166,14 @@ abi = json.loads("""[
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
-		"name": "Data_list",
+		"name": "data",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -264,56 +241,6 @@ abi = json.loads("""[
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getProducts",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "price",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "description",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "reqtemp",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "manufacturing",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct Supplychain.Product[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -366,22 +293,62 @@ abi = json.loads("""[
 						"type": "uint256"
 					},
 					{
-						"internalType": "uint256",
-						"name": "weight",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "waste_product",
-						"type": "uint256"
-					},
-					{
 						"internalType": "bool",
 						"name": "flag",
 						"type": "bool"
 					}
 				],
 				"internalType": "struct Supplychain.Status[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getProducts",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "price",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "reqtemp",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "manufacturing",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Supplychain.Product[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -414,6 +381,65 @@ abi = json.loads("""[
 				"internalType": "struct Supplychain.Worker[]",
 				"name": "",
 				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "productStatus",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "location",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "temp",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "humidity",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "heatindex",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "w_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "p_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "total_quantity",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "flag",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -472,16 +498,6 @@ abi = json.loads("""[
 			{
 				"internalType": "uint256",
 				"name": "total_quantity",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "weight",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "waste_product",
 				"type": "uint256"
 			},
 			{
@@ -594,70 +610,14 @@ abi = json.loads("""[
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
 			}
 		],
-		"name": "productStatus",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "location",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "timestamp",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "temp",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "humidity",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "heatindex",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "w_id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "p_id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "total_quantity",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "weight",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "waste_product",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bool",
-				"name": "flag",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
+		"name": "setWorker",
+		"outputs": [],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -726,8 +686,8 @@ print(key)# private key account
 account = w3.toChecksumAddress(
     '0x56B53253417F422A608b379182c97EdEb6bF2cfF')  # account
 
-address = w3.toChecksumAddress(
-    '0xFa56954976bA7d616945c09A7e360499e7038d98')  # contrat address
+address = w3.toChecksumAddress('0xE4b876ed393E19FbD18eC99118647BcbFE5300F3')
+    #'0xFa56954976bA7d616945c09A7e360499e7038d98')  # contrat address
 deployed_contract = w3.eth.contract(address=address, abi=abi)
 
 print(deployed_contract.functions.getWorkerssList().call())
@@ -753,8 +713,8 @@ def AddProduct(name, price, description, reqtemp,manufacturing):
   return "product added"
 
 
-def AddStatus(location, temp,humidity,heatindex, wid, pid,total_quantity,weight,waste_product,flag):
-  transaction = deployed_contract.functions.AddStatus(location, temp, humidity, heatindex, wid, pid, total_quantity, weight, waste_product,flag).buildTransaction({'from': account})
+def AddStatus(location, temp,humidity,heatindex, wid, pid,total_quantity,flag):
+  transaction = deployed_contract.functions.AddStatus(location, temp, humidity, heatindex, wid, pid, total_quantity,flag).buildTransaction({'from': account})
   transaction.update({'nonce': w3.eth.get_transaction_count(account)})
   signed_tx = w3.eth.account.sign_transaction(transaction, key)
   txn_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
