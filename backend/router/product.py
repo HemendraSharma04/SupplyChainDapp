@@ -11,9 +11,9 @@ class Product(BaseModel):
     
 class Status(BaseModel):
     location :str
-    temp: int
-    humidity:int
-    heatindex:int
+    temp: str
+    humidity:str
+    heatindex:str
     wid :int
     pid :int
     total_quantity:int

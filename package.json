@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.5.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "netlify-deploy": "^0.0.2"
   }
 }
