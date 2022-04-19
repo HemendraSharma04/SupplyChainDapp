@@ -5,8 +5,11 @@ const Home = () => {
     return (
         <div class="landing-wrapper">
             <div id="heading">
-                Supply Chain Management using Blockchain
+                Supply Chain Management using Blockchain and IOT
             </div> 
+
+
+           
             <div style={{width: "50%", margin: "auto"}}>
             Made By:<br/>
             19BCT0028 - Hemendra Sharma<br/>
