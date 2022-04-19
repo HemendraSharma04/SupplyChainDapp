@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import SupplyChain from "../artifacts/contracts/SupplyChain.sol/Supplychain.json";
 import { ethers } from "ethers";
+import TextField from '@mui/material/TextField';
 
-
-const DisplayProducts = () => {
+const DisplayData = () => {
     const ContractAddress = "0xFa56954976bA7d616945c09A7e360499e7038d98" //"0xFa56954976bA7d616945c09A7e360499e7038d98";
+    const [id, setId] = useState(0);
 
     async function requestAccount() {
         await window.ethereum.request({ method: "eth_requestAccounts" });
     }
-
-    async function getProduct() {
+    console.log(id);
+    async function getData() {
         if (typeof window.ethereum !== "undefined") {
             requestAccount();
             const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -24,7 +25,7 @@ const DisplayProducts = () => {
             );
             try {
 
-                const Wdata = await contract.getProducts();
+                const Wdata = await contract.getProductData(id);
                 console.log("data: ", Wdata);
 
                 //console.log(contract);
@@ -37,9 +38,10 @@ const DisplayProducts = () => {
 
     return (
         <>
-            PRODUCT
-            <div><button onClick={getProduct}>PRODUCTS</button></div>
+
+            <TextField id="standard-basic" label="Enter PID" variant="standard" onChange={(e) => setId(e.target.value)} />
+            <div><button onClick={getData}>Data</button></div>
         </>);
 }
 
-export default DisplayProducts;
+export default DisplayData;
