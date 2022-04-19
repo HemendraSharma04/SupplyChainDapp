@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
-
+import './Home.css';
 
 const Home = () => {
-    return (<div><b>What is Home?</b><p>A place where someone is waiting for you</p></div> );
+    return (
+        <div class="landing-wrapper">
+            <div id="heading">
+                Supply Chain Management using Blockchain
+            </div> 
+        </div>
+    );
 }
  
 export default Home;
