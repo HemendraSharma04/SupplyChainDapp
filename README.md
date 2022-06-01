@@ -9,3 +9,17 @@ Smart Contract based Supply Chain Management for Data Integrity and Anti-Tamperi
   <li> Backend --> Fastapi </li>
   <li> Frontend --> Reactjs and Ethers.js </li>
 </ul>
+
+#SCREENSHOTS
+
+<p>HOME PAGE </p>
+![](Screenshots/Home.PNG)
+
+<p>PRODUCTS PAGE</p>
+![](Screenshots/Products.PNG)
+
+<p>STATUS PAGE</p>
+![](Screenshots/status.PNG)
+
+<p>DATA PAGE</p>
+![](Screenshots/Data.PNG)
