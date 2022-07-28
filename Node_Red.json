@@ -1,0 +1,291 @@
+[
+    {
+        "id": "74e0880a.c777f8",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a4864e0ae04893b3",
+        "type": "inject",
+        "z": "74e0880a.c777f8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 620,
+        "wires": [
+            [
+                "b74953a5ea32a13e"
+            ]
+        ]
+    },
+    {
+        "id": "b74953a5ea32a13e",
+        "type": "function",
+        "z": "74e0880a.c777f8",
+        "name": "",
+        "func": "\nmsg.payload={\n \"location\":\"warehouse B\",        \n \"temp\":\"34\",\n \"humidity\":\"64\",\n \"heatindex\":\"34\",\n \"wid\":4,\n \"pid\":2,\n \"total_quantity\":100,\n \"flag\":true\n    \n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 620,
+        "wires": [
+            [
+                "6f5b237463e95b7f"
+            ]
+        ]
+    },
+    {
+        "id": "a40c9fc1d979e6f5",
+        "type": "debug",
+        "z": "74e0880a.c777f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "6f5b237463e95b7f",
+        "type": "http request",
+        "z": "74e0880a.c777f8",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:8000/product/status",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 690,
+        "y": 620,
+        "wires": [
+            [
+                "a40c9fc1d979e6f5"
+            ]
+        ]
+    },
+    {
+        "id": "cc81844bc0d73d8a",
+        "type": "serial in",
+        "z": "74e0880a.c777f8",
+        "name": "",
+        "serial": "f701a48b3c154d76",
+        "x": 150,
+        "y": 520,
+        "wires": [
+            [
+                "1eced02412acd15f"
+            ]
+        ]
+    },
+    {
+        "id": "fdd2c2786f6bc4db",
+        "type": "ui_gauge",
+        "z": "74e0880a.c777f8",
+        "name": "Temp",
+        "group": "d5da3e9b.46abf",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "temp",
+        "label": "°C",
+        "format": "{{msg.payload.temp}} ",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "15",
+        "seg2": "30",
+        "className": "",
+        "x": 1070,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ef1a15d77d8ae805",
+        "type": "ui_gauge",
+        "z": "74e0880a.c777f8",
+        "name": "Humidity",
+        "group": "d5da3e9b.46abf",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{msg.payload.humidity}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "50",
+        "seg2": "75",
+        "className": "",
+        "x": 1220,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "1eced02412acd15f",
+        "type": "function",
+        "z": "74e0880a.c777f8",
+        "name": "",
+        "func": "\nconst temp= parseInt(msg.payload.slice(32,38));\nconst humid= parseInt(msg.payload.slice(11,16));\nconst heat= parseInt(msg.payload.slice(59,65));\n\n\nmsg.payload={\n    \n   \"temp\":temp,\n   \"humidity\":humid,\n   \"heatindex\":heat,   \n   \"pid\":0\n   \n    \n}\n\n\nreturn msg;\n// Humidity: 77.00%  Temperature: 26.60C 79.88F  Heat index: 28.67C 83.60F\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 520,
+        "wires": [
+            [
+                "fdd2c2786f6bc4db",
+                "ef1a15d77d8ae805",
+                "069530caca271d72",
+                "f30f7a4359c6d3ba"
+            ]
+        ]
+    },
+    {
+        "id": "069530caca271d72",
+        "type": "ui_gauge",
+        "z": "74e0880a.c777f8",
+        "name": "",
+        "group": "d5da3e9b.46abf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Heat Index",
+        "label": "°C",
+        "format": "{{msg.payload.heatindex}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "25",
+        "seg2": "40",
+        "className": "",
+        "x": 1190,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "f30f7a4359c6d3ba",
+        "type": "http request",
+        "z": "74e0880a.c777f8",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:8000/product/data",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 490,
+        "y": 300,
+        "wires": [
+            [
+                "b601ae340c483b50"
+            ]
+        ]
+    },
+    {
+        "id": "b601ae340c483b50",
+        "type": "debug",
+        "z": "74e0880a.c777f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f701a48b3c154d76",
+        "type": "serial-port",
+        "serialport": "COM3",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "2000"
+    },
+    {
+        "id": "d5da3e9b.46abf",
+        "type": "ui_group",
+        "name": "slider",
+        "tab": "784aac14.5c2404",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "784aac14.5c2404",
+        "type": "ui_tab",
+        "name": "slider",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
