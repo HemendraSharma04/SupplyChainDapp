@@ -1,5 +1,6 @@
 
 Smart Contract based Supply Chain Management for Data Integrity and Anti-Tampering.
+## Ropsten testnet is depricated so please use goerli network!!!
 <p> SMART CONTRACT -->  https://ropsten.etherscan.io/address/0xE4b876ed393E19FbD18eC99118647BcbFE5300F3#code </p>
 <p> Frontend link  --> https://psupplychain.netlify.app/ </p>
 
