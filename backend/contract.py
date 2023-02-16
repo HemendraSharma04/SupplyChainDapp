@@ -683,6 +683,7 @@ abi = json.loads("""[
 ]""")
 
 )
+
 # private key account
 key = "<account-private-key>"
 
