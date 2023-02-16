@@ -7,7 +7,9 @@ import os
 load_dotenv()
 
 w3 = Web3(Web3.HTTPProvider(
-    "https://eth-ropsten.alchemyapi.io/v2/-4TAg-d6XKuHICQaF7yZfF2BfQ3BpR5t"))
+    "https://polygon-mumbai.g.alchemy.com/v2/<your_key>")). 
+
+# change url here
 w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
 
@@ -680,14 +682,15 @@ abi = json.loads("""[
 	}
 ]""")
 
-#key = os.getenv("RINKEBY_KEY")
-key = "4df97a2c7c2f353c30be92945884987299c983a051ca3a4a9d0a2cb6e8e3d175"
-print(key)# private key account
-account = w3.toChecksumAddress(
-    '0x56B53253417F422A608b379182c97EdEb6bF2cfF')  # account
+)
+# private key account
+key = "<account-private-key>"
 
-address = w3.toChecksumAddress('0xE4b876ed393E19FbD18eC99118647BcbFE5300F3')
-    #'0xFa56954976bA7d616945c09A7e360499e7038d98')  # contrat address
+# account address   
+account = w3.toChecksumAddress('<your-account-address>')  
+
+# contract address
+address = w3.toChecksumAddress('<contract-address>')  
 deployed_contract = w3.eth.contract(address=address, abi=abi)
 
 print(deployed_contract.functions.getWorkerssList().call())
