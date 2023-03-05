@@ -46,7 +46,7 @@ Smart Contract based Supply Chain Management for Data Integrity and Anti-Tamperi
 
 - setup dht11 with arduino [LINK](https://randomnerdtutorials.com/complete-guide-for-dht11dht22-humidity-and-temperature-sensor-with-arduino/)
 - setup node red --> so basically node red is low code programming for event driven applications
-- so here we send data from arduino to com3 port and we setup a node at com3 in node red (in built node) so that collects data and from there we modify or add data according to our need and calls and API that will send that data to blockchain 
+- so here we send data from arduino to com3 port and we setup a node at com3 port in node red (in built node) that collects data and from there we can modify or add data according to our needs and calls an API that will send our data to blockchain 
 - json file for flow is [here](https://github.com/HemendraSharma04/SupplyChainDapp/blob/hemendra/Node_Red.json) , you just need to go to node red settings and click on import flows or similar option that will import this flow to your node red and then you can see the code there and change it (its basically plain js code)
 
 
