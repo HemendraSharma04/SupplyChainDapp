@@ -1,13 +1,11 @@
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
-from eth_account import Account
 import json
-from dotenv import load_dotenv
 import os
-load_dotenv()
+
 
 w3 = Web3(Web3.HTTPProvider(
-    "https://polygon-mumbai.g.alchemy.com/v2/<your_key>")). 
+    "https://polygon-mumbai.g.alchemy.com/v2/<your_key>"))
 
 # change url here
 w3.middleware_onion.inject(geth_poa_middleware, layer=0)
@@ -682,75 +680,80 @@ abi = json.loads("""[
 	}
 ]""")
 
-)
 
 # private key account
-key = "<account-private-key>"
+key = "<account_private_key>"
 
-# account address   
-account = w3.toChecksumAddress('<your-account-address>')  
+# account address
+account = w3.toChecksumAddress('<account_address>')
 
 # contract address
-address = w3.toChecksumAddress('<contract-address>')  
+address = w3.toChecksumAddress('<contract_address>')
 deployed_contract = w3.eth.contract(address=address, abi=abi)
 
 print(deployed_contract.functions.getWorkerssList().call())
 
 
 def setWorker(name):
-  transaction = deployed_contract.functions.setWorker(name).buildTransaction({'from': account})
-  transaction.update({'nonce': w3.eth.get_transaction_count(account)})
-  signed_tx = w3.eth.account.sign_transaction(transaction, key)
-  txn_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
-  txn_receipt = w3.eth.wait_for_transaction_receipt(txn_hash)
-  print(txn_receipt)
-  return "worker added"
+    transaction = deployed_contract.functions.setWorker(
+        name).buildTransaction({'from': account})
+    transaction.update({'nonce': w3.eth.get_transaction_count(account)})
+    signed_tx = w3.eth.account.sign_transaction(transaction, key)
+    txn_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+    txn_receipt = w3.eth.wait_for_transaction_receipt(txn_hash)
+    print(txn_receipt)
+    return "worker added"
 
 
-def AddProduct(name, price, description, reqtemp,manufacturing):
-  transaction = deployed_contract.functions.AddProduct(name, price, description, reqtemp,manufacturing).buildTransaction({'from': account})
-  transaction.update({'nonce': w3.eth.get_transaction_count(account)})
-  signed_tx = w3.eth.account.sign_transaction(transaction, key)
-  txn_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
-  txn_receipt = w3.eth.wait_for_transaction_receipt(txn_hash)
-  print(txn_receipt)
-  return "product added"
+def AddProduct(name, price, description, reqtemp, manufacturing):
+    transaction = deployed_contract.functions.AddProduct(
+        name, price, description, reqtemp, manufacturing).buildTransaction({'from': account})
+    transaction.update({'nonce': w3.eth.get_transaction_count(account)})
+    signed_tx = w3.eth.account.sign_transaction(transaction, key)
+    txn_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+    txn_receipt = w3.eth.wait_for_transaction_receipt(txn_hash)
+    print(txn_receipt)
+    return "product added"
 
 
-def AddStatus(location, temp,humidity,heatindex, wid, pid,total_quantity,flag):
-  transaction = deployed_contract.functions.AddStatus(location, temp, humidity, heatindex, wid, pid, total_quantity,flag).buildTransaction({'from': account})
-  transaction.update({'nonce': w3.eth.get_transaction_count(account)})
-  signed_tx = w3.eth.account.sign_transaction(transaction, key)
-  txn_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
-  txn_receipt = w3.eth.wait_for_transaction_receipt(txn_hash)
-  print(txn_receipt)
-  return "status added"
+def AddStatus(location, temp, humidity, heatindex, wid, pid, total_quantity, flag):
+    transaction = deployed_contract.functions.AddStatus(
+        location, temp, humidity, heatindex, wid, pid, total_quantity, flag).buildTransaction({'from': account})
+    transaction.update({'nonce': w3.eth.get_transaction_count(account)})
+    signed_tx = w3.eth.account.sign_transaction(transaction, key)
+    txn_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+    txn_receipt = w3.eth.wait_for_transaction_receipt(txn_hash)
+    print(txn_receipt)
+    return "status added"
 
-def AddData( temp,humidity,heatindex, pid):
-  transaction = deployed_contract.functions.AddData(temp, humidity, heatindex, pid).buildTransaction({'from': account})
-  transaction.update({'nonce': w3.eth.get_transaction_count(account)})
-  signed_tx = w3.eth.account.sign_transaction(transaction, key)
-  txn_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
-  txn_receipt = w3.eth.wait_for_transaction_receipt(txn_hash)
-  print(txn_receipt)
-  return "sensor data added"
 
-def  getProductsList():
-    
+def AddData(temp, humidity, heatindex, pid):
+    transaction = deployed_contract.functions.AddData(
+        temp, humidity, heatindex, pid).buildTransaction({'from': account})
+    transaction.update({'nonce': w3.eth.get_transaction_count(account)})
+    signed_tx = w3.eth.account.sign_transaction(transaction, key)
+    txn_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+    txn_receipt = w3.eth.wait_for_transaction_receipt(txn_hash)
+    print(txn_receipt)
+    return "sensor data added"
+
+
+def getProductsList():
+
     return deployed_contract.functions.getProductsList().call()
 
+
 def getWorkersList():
-   return deployed_contract.functions.getWorkerssList().call()
+    return deployed_contract.functions.getWorkerssList().call()
+
 
 def getProductStatus(pid):
-   return deployed_contract.functions.getProductStatus(pid).call()
+    return deployed_contract.functions.getProductStatus(pid).call()
+
 
 def getProductData(pid):
     return deployed_contract.functions.getProductData(pid).call()
 
+
 def getProducts():
     return deployed_contract.functions.getProducts().call()
-    
-
-
-    

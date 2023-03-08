@@ -1,3 +1,4 @@
 fastapi
-uvicorn[standard]
-web3==5.31.3
+uvicorn
+web3
+

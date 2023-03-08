@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  server:
+    build: ./backend
+
+    volumes:
+      - .:/backend
+    ports:
+      - 8000:80
+
+  client:
+    build: ./client
+    volumes:
+      - .:/client
+    ports:
+      - 3000:3000
