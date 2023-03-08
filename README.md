@@ -55,6 +55,7 @@ Smart Contract based Supply Chain Management for Data Integrity and Anti-Tamperi
 
 - install docker and change contract address and other variables 
 - run the command `docker-compose up`
+- setup IOT part whose description is above ⬆️
 - Thats it 😎🚀
 
 # SCREENSHOTS
