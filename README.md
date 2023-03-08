@@ -15,6 +15,8 @@ Smart Contract based Supply Chain Management for Data Integrity and Anti-Tamperi
 
 # How to run 
 
+## 1.Run every service seperately
+
 ## Project is divided into three parts i.e  client(frontend) , backend and IOT 
 
 ### Backend
@@ -49,9 +51,11 @@ Smart Contract based Supply Chain Management for Data Integrity and Anti-Tamperi
 - so here we send data from arduino to com3 port and we setup a node at com3 port in node red (in built node) that collects data and from there we can modify or add data according to our needs and calls an API that will send our data to blockchain 
 - json file for flow is [here](https://github.com/HemendraSharma04/SupplyChainDapp/blob/hemendra/Node_Red.json) , you just need to go to node red settings and click on import flows or similar option that will import this flow to your node red and then you can see the code there and change it (its basically plain js code)
 
+## 2.Docker
 
-
-
+- install docker and change contract address and other variables 
+- run the command `docker-compose up`
+- Thats it 😎🚀
 
 # SCREENSHOTS
 
